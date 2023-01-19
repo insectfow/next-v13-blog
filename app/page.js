@@ -2,6 +2,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import HeaderLogo from '../public/favicon.svg';
+import Ummee from '../public/umee.png'
+import Ummee2 from '../public/umee2.png'
+import Ummee3 from '../public/umee3.png'
 import { useState, useEffect, useRef } from 'react';
 export default function Home() {
   const section = useRef();
@@ -14,17 +17,20 @@ export default function Home() {
     {
       idx: 0,
       title: '첫번째 세션입니다.',
-      color: '3541b1'
+      color: '3541b1',
+      image: Ummee
     },
     {
       idx: 1,
       title: '2번째 세션입니다.',
-      color: 'BB2649'
+      color: 'BB2649',
+      image: Ummee2
     },
     {
       idx: 2,
       title: '3번째 세션입니다.',
-      color: '768852'
+      color: '768852',
+      image: Ummee3
     }
   ]);
   // 클릭시 세션 이동 함수
@@ -107,11 +113,14 @@ export default function Home() {
         })}
       </nav>
       <div ref={section} id='fullPage' className='container'>
-        {tabs.map(({ title, color, idx }) => {
+        {tabs.map(({ title, color, idx, image }) => {
           const style = {
             background: '#' + color
           }
-          return <div ref={el => (tabRef.current[idx] = el)} id={idx} className='section' style={style} key={'section' + idx}>{ title }</div>
+          return <div ref={el => (tabRef.current[idx] = el)} id={idx} className='section' style={style} key={'section' + idx}>
+            {/* <h1>{title}</h1> */}
+            { image && <Image src={image} width={400} height={400} alt="ummm"></Image>}
+          </div>
         })}
       </div>
     </main>
