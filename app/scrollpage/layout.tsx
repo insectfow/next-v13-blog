@@ -1,5 +1,4 @@
-import './globals.css';
-import { Header } from './Header';
+import '../globals.css';
 export default function RootLayout({ children }: {
   children: React.ReactNode;
 }) {
@@ -7,10 +6,7 @@ export default function RootLayout({ children }: {
   return (
     <html lang="ko" dir="ltr">
       <body>
-        {/* <Header /> */}
-        {/* <main> */}
           {children}
-        {/* </main> */}
       </body>
     </html>
   );
