@@ -204,22 +204,28 @@ body, html {
 
 .middle-nav button {
   display: flex;
-  width: 12px;
-  height: 12px;
-  background: #fff;
-  border-radius: 50px;
+  width: 15px;
+  height: 15px;
   transition: all 0.2s ease-in-out;
+  background: #fff;
   border: 1px solid #fff;
+  border-radius: 50px;
 }
 .middle-nav button.active {
   background: #000;
 }
 
+
 .section {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 20px;
   color: #fff;
+}
+
+.section h1 {
 }
 
 

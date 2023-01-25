@@ -35,28 +35,23 @@ export default function Home() {
   ]);
   // 클릭시 세션 이동 함수
   const heightCheck = (e) => {
+
+    console.log(e.target);
+
     const { target: { name } } = e;
-
     setIsStop(true);
-
     tabRef.current[name].scrollIntoView();
-    console.log('이동할 덱스 :', name);
-    setCurrentTab(Number(name));
-
   }
 
   useEffect(() => {
     let options = {
       root: document.querySelector('.container'),
       rooMargin: '0px',
-      threshold: 0.02
+      threshold: 0.1
     }
     const observer = new IntersectionObserver(([entry]) => { 
-      // console.log(entry.isIntersecting, entry.target.id, entry);
       if (entry.isIntersecting) {
-        
         if (!isStop) {
-          console.log(entry.target.id);
           setCurrentTab(Number(entry.target.id));
         }
 
@@ -80,23 +75,11 @@ export default function Home() {
   
 
   useEffect(() => {
-    console.log('isStop', isStop);
-
     const timer = setInterval(() => {
       setIsStop(false);
-
       clearInterval(timer)
     }, 1000)
-    
-
-
-  },[isStop])
-
-
-
-
-
-
+  }, [isStop])
   return (
     <main>
       <div className='logo'>
@@ -109,7 +92,8 @@ export default function Home() {
       </nav>
       <nav className='middle-nav'>
       {tabs.map(({ idx }) => {
-        return <button ref={el => (btnRef.current[idx] = el)} className={currentTab == idx ? 'active' : null} name={idx} key={'middle-nav' + idx} onClick={heightCheck} />
+        return <button ref={el => (btnRef.current[idx] = el)} name={idx} className={currentTab == idx ? 'active' : null} key={'middle-nav' + idx} onClick={heightCheck}>
+        </button>
         })}
       </nav>
       <div ref={section} id='fullPage' className='container'>
@@ -118,7 +102,7 @@ export default function Home() {
             background: '#' + color
           }
           return <div ref={el => (tabRef.current[idx] = el)} id={idx} className='section' style={style} key={'section' + idx}>
-            {/* <h1>{title}</h1> */}
+            <h1>{title}</h1>
             { image && <Image src={image} width={400} height={400} alt="ummm"></Image>}
           </div>
         })}
